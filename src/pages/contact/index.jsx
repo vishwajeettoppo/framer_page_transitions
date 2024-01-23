@@ -1,10 +1,11 @@
+import Curve from "@/components/Layout/Curve";
 import Inner from "@/components/Layout/Inner";
 import Stairs from "@/components/Layout/Stairs";
 import React from "react";
 
 const Contact = () => {
   return (
-    <Stairs>
+    <Curve>
       <h1 className="text-xl font-bold">Contact</h1>
       <div className="flex gap-8">
         <p>
@@ -22,7 +23,7 @@ const Contact = () => {
           repellendus aut dolorem.
         </p>
       </div>
-    </Stairs>
+    </Curve>
   );
 };
 
