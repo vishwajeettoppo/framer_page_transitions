@@ -12,16 +12,15 @@ const anim = (variants) => {
   };
 };
 
-const routes={
-    '/':'Home',
-    '/about':'About',
-    '/contact':'Contact'
-}
+const routes = {
+  "/": "Home",
+  "/about": "About",
+  "/contact": "Contact",
+};
 
 export default function Curve({ children }) {
-
   const [dimensions, setDimensions] = useState({ height: 0, width: 0 });
-  const router=useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     const resize = () => {
@@ -35,36 +34,41 @@ export default function Curve({ children }) {
     return () => window.removeEventListener("resize", resize);
   }, []);
 
-  const text={
-    initial:{
-        opacity:1,
+  const text = {
+    initial: {
+      opacity: 1,
     },
-    enter:{
-        opacity:0,
-        top:-100,
-        transition: {
-            duration: 0.7,
-            delay: 0.4,
-            ease: [0.76, 0, 0.24, 1],
-          },
-          transitionEnd:{
-            top:'50%'
-          }
+    enter: {
+      opacity: 0,
+      top: -100,
+      transition: {
+        duration: 0.7,
+        delay: 0.4,
+        ease: [0.76, 0, 0.24, 1],
+      },
+      transitionEnd: {
+        top: "50%",
+      },
     },
-    exit:{
-        opacity:1,
-        top:'40%',
-        transition: {
-            duration: 0.5,
-            delay: 0.4,
-            ease: [0.33, 1, 0.68, 1],
-          }, 
-    }
-  }
+    exit: {
+      opacity: 1,
+      top: "40%",
+      transition: {
+        duration: 0.5,
+        delay: 0.4,
+        ease: [0.33, 1, 0.68, 1],
+      },
+    },
+  };
 
   return (
     <div className="px-20">
-        <motion.p {...anim(text)} className="absolute top-[40%] left-[50%] translate-x-[-50%] text-white z-30 text-4xl font-bold">{routes[router.route]}</motion.p>
+      <motion.p
+        {...anim(text)}
+        className="absolute top-[40%] left-[50%] translate-x-[-50%] text-white z-30 text-4xl font-bold"
+      >
+        {routes[router.route]}
+      </motion.p>
       <div
         style={{ opacity: dimensions.width > 0 ? 0 : 1 }}
         className="bg-black w-[100vw] h-[calc(100vh+600px)] top-[-300px] left-0 fixed pointer-events-none"
@@ -107,39 +111,39 @@ const SVG = ({ height, width }) => {
         delay: 0.4,
         ease: [0.76, 0, 0.24, 1],
       },
-      transitionEnd:{
-        top:'100vh'
-      }
+      transitionEnd: {
+        top: "100vh",
+      },
     },
-    exit:{
-        top:'-300px',
-        transition: {
-            duration: 0.7,
-            ease: [0.76, 0, 0.24, 1],
-        }
-    }
+    exit: {
+      top: "-300px",
+      transition: {
+        duration: 0.7,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    },
   };
 
-  const curve={
-    initial:{
-        d:initialPath,
+  const curve = {
+    initial: {
+      d: initialPath,
     },
-    enter:{
-        d:targetPath,
-        transition: {
-            duration: 0.7,
-            delay: 0.5,
-            ease: [0.76, 0, 0.24, 1],
-          },
+    enter: {
+      d: targetPath,
+      transition: {
+        duration: 0.7,
+        delay: 0.5,
+        ease: [0.76, 0, 0.24, 1],
+      },
     },
-    exit:{
-        d:initialPath,
-        transition: {
-            duration: 0.7,
-            ease: [0.76, 0, 0.24, 1],
-          },
-    }
-  }
+    exit: {
+      d: initialPath,
+      transition: {
+        duration: 0.7,
+        ease: [0.76, 0, 0.24, 1],
+      },
+    },
+  };
   return (
     <motion.svg
       {...anim(slide)}
